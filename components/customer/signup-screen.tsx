@@ -37,9 +37,9 @@ export function SignupScreen({
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
             Fried chicken rewards
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-brand">Join the chicken club</h2>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-brand">Join the Rewards club</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
-            Register once and get the QR you show when you buy fried chicken.
+            Register once and get the QR you show when you buy your fried chicken.
           </p>
 
           {!firebaseConfigured && (
@@ -76,16 +76,18 @@ function SignupIntro() {
     <section className="min-w-0 rounded-3xl bg-brand p-6 text-white sm:p-10">
       <p className="text-sm font-semibold tracking-[0.22em] text-white">EPIC SNACKS</p>
       <h1 className="mt-4 max-w-sm text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl">
-        Five chicken visits.
-        <span className="block text-gold">One free snack.</span>
+        Every Visit Brings You Closer to a Treat!.
+        <span className="block text-gold">Rewards Are Waiting!.</span>
       </h1>
       <p className="mt-4 max-w-sm text-base leading-7 text-cream">
-        Buy fried chicken on five different days. Each bill of ₹200 or more earns one golden stamp.
+        Enjoy your favourite fried chicken on five different days.
+        Spend ₹200 or more on each visit to earn a golden stamp.
+        Your next treat is on us!
       </p>
       <ol className="mt-8 space-y-3 text-sm text-white">
         <li className="flex gap-3"><span className="font-semibold text-gold">01</span> Get your fried-chicken rewards QR.</li>
         <li className="flex gap-3"><span className="font-semibold text-gold">02</span> Show it at the counter with every chicken order.</li>
-        <li className="flex gap-3"><span className="font-semibold text-gold">03</span> Five stamps unlock a free chicken snack.</li>
+        <li className="flex gap-3"><span className="font-semibold text-gold">03</span> collect stamps to claim your free reward.</li>
       </ol>
     </section>
   );
