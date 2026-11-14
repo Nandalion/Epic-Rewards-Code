@@ -5,6 +5,7 @@ import { normalizePhone } from "@/lib/loyalty-engine";
 import { requireStaff } from "@/lib/staff-auth";
 import { adminDb } from "@/lib/firebase-admin";
 
+export const runtime = "nodejs";
 export async function GET(request: Request) {
   try {
     await requireStaff(request);

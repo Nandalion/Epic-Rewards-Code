@@ -3,6 +3,9 @@ import { apiError } from "@/lib/api-error";
 import { adminOverview } from "@/lib/loyalty-store";
 import { requireStaff } from "@/lib/staff-auth";
 
+
+export const runtime = "nodejs";
+
 export async function GET(request: Request) {
   try {
     await requireStaff(request);
