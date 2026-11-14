@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #a20000;
+  --color-brand-dark: #7a0000;
+  --color-ink: #191919;
+  --color-muted: #5c5c5c;
+  --color-gold: #ffe500;
+  --color-gold-ink: #191919;
+  --color-line: #e6e6e6;
+  --color-cream: #fff8f0;
+}
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff8f0; color: #191919; font-family: "Segoe UI", system-ui, sans-serif; }
+button, input { font: inherit; }
+::selection { background: #ffe500; color: #191919; }

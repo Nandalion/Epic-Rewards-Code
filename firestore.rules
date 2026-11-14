@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Customers, visits, rewards, and campaign settings are written only by
+    // the Next.js server using the Firebase Admin SDK. The Admin SDK bypasses
+    // these rules. Browser clients cannot read or change loyalty data.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
