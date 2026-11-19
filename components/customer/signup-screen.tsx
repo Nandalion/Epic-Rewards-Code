@@ -82,7 +82,7 @@ function SignupIntro() {
         <span className="block text-gold">Rewards Are Waiting!.</span>
       </h1>
       <p className="mt-4 max-w-sm text-base leading-7 text-cream">
-        Enjoy your favourite fried chicken on five different days.
+        Enjoy your favourite fried chicken on ten different days.
         Spend ₹200 or more on each visit to earn a golden stamp.
         Your next treat is on us!
       </p>
