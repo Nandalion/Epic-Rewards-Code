@@ -387,6 +387,12 @@ export default function AdminPage() {
               <Mini label="2 visits" value={analytics.visitBuckets["2"]} />
               <Mini label="3 visits" value={analytics.visitBuckets["3"]} />
               <Mini label="4 visits" value={analytics.visitBuckets["4"]} />
+              <Mini label="5 visits" value={analytics.visitBuckets["5"]} />
+              <Mini label="6 visits" value={analytics.visitBuckets["6"]} />
+              <Mini label="7 visits" value={analytics.visitBuckets["7"]} />
+              <Mini label="8 visits" value={analytics.visitBuckets["8"]} />
+              <Mini label="9 visits" value={analytics.visitBuckets["9"]} />
+              <Mini label="10 visits" value={analytics.visitBuckets["10"]} />
               <Mini label="Completed cycles" value={analytics.completedCycles} />
               <Mini label="Rewards ready" value={analytics.rewardsAvailable} />
               <Mini label="Qualifying visits" value={analytics.qualifyingVisits} />
