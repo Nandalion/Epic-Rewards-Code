@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "EPIC Snacks | Customer Rewards",
-  description: "EPIC Snacks fried chicken rewards. Five visits, one free chicken snack.",
+  description: "EPIC Snacks fried chicken rewards. Ten visits, one free chicken snack.",
 };
 
 export const viewport: Viewport = {

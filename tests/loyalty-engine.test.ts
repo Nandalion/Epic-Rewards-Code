@@ -109,10 +109,10 @@ test("the same calendar day and the same bill cannot count twice", () => {
   assert.equal(sameBill.ok, false);
 });
 
-test("five different days unlock one reward and a sixth visit is blocked", () => {
+test("ten different days unlock one reward and a eleventh visit is blocked", () => {
   let cycle = newCycle({ id: "cycle-1", customerId: customer.id, campaign: DEFAULT_CAMPAIGN, cycleNumber: 1 });
   let reward: RewardRecord | null = null;
-  for (let day = 1; day <= 5; day += 1) {
+  for (let day = 1; day <= 10; day += 1) {
     const result = credit({
       cycle,
       amount: 250,
@@ -124,14 +124,14 @@ test("five different days unlock one reward and a sixth visit is blocked", () =>
     cycle = result.cycle;
     reward = result.reward;
   }
-  assert.equal(cycle.visitCount, 5);
+  assert.equal(cycle.visitCount, 10);
   assert.equal(cycle.status, "completed");
   assert.equal(reward?.status, "available");
   assert.equal(reward?.rewardName, "Free Chicken Snack");
   const extra = credit({
     cycle,
     amount: 250,
-    bill: "DAY-6",
+    bill: "DAY-11",
     now: new Date("2026-11-06T05:00:00.000Z"),
     openReward: reward,
   });
@@ -140,7 +140,7 @@ test("five different days unlock one reward and a sixth visit is blocked", () =>
 
 test("redemption QR is single use, expires, and starts the next cycle at 0", () => {
   const cycle = newCycle({ id: "cycle-1", customerId: customer.id, campaign: DEFAULT_CAMPAIGN, cycleNumber: 1 });
-  cycle.visitCount = 5;
+  cycle.visitCount = 10;
   cycle.status = "completed";
   const reward: RewardRecord = {
     id: cycle.id,
@@ -200,7 +200,7 @@ test("redemption QR is single use, expires, and starts the next cycle at 0", () 
   assert.equal(redeemed.nextCycle.visitCount, 0);
   assert.equal(redeemed.nextCycle.cycleNumber, 2);
   assert.equal(redeemed.cycle.status, "redeemed");
-  assert.equal(cycle.requiredVisits, 5);
+  assert.equal(cycle.requiredVisits, 10);
 
   const duplicate = planRedeem({
     now: new Date("2026-11-14T05:02:00.000Z"),
@@ -234,7 +234,7 @@ test("a changed campaign does not rewrite the current cycle", () => {
   const updated = planCampaignUpdate(DEFAULT_CAMPAIGN, { requiredVisits: 3, minimumBillAmount: 500, rewardName: "Free Juice" });
   assert.equal(updated.ok, true);
   if (!updated.ok) return;
-  assert.equal(cycle.requiredVisits, 5);
+  assert.equal(cycle.requiredVisits, 10);
   assert.equal(cycle.minimumBillAmount, 200);
   assert.equal(cycle.rewardSnapshot.rewardName, "Free Chicken Snack");
   const next = newCycle({ id: "cycle-2", customerId: customer.id, campaign: updated.campaign, cycleNumber: 2 });
