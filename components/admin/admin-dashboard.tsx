@@ -13,6 +13,7 @@ type AdminDashboardProps = {
   billAmount: string;
   rewardText: string;
   busy: boolean;
+  lookupBusy: boolean;
   onToggleScanner: () => void;
   onLookup: (raw: string) => void;
   onBillNumberChange: (value: string) => void;
@@ -25,6 +26,15 @@ type AdminDashboardProps = {
   onCreatePin: (customer: Customer) => void;
 };
 
+function Spinner() {
+  return (
+    <span
+      className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
+      role="status"
+      aria-label="Loading"
+    />
+  );
+}
 export function AdminDashboard({
   customers,
   scannerOn,
@@ -35,6 +45,7 @@ export function AdminDashboard({
   billNumber,
   billAmount,
   rewardText,
+  lookupBusy,
   busy,
   onToggleScanner,
   onLookup,
@@ -64,6 +75,7 @@ export function AdminDashboard({
       </section>
 
       <PurchaseRecorder
+        lookupBusy={lookupBusy}
         scannerOn={scannerOn}
         scanError={scanError}
         notice={notice}
@@ -111,6 +123,7 @@ function PurchaseRecorder({
   billNumber,
   billAmount,
   busy,
+  lookupBusy,
   onToggleScanner,
   onLookup,
   onBillNumberChange,
@@ -127,6 +140,7 @@ function PurchaseRecorder({
   | "billNumber"
   | "billAmount"
   | "busy"
+  | "lookupBusy"
   | "onToggleScanner"
   | "onLookup"
   | "onBillNumberChange"
@@ -160,7 +174,7 @@ function PurchaseRecorder({
       <div className="mt-4 flex flex-wrap gap-2">
         <input
           id="manual-qr"
-                  placeholder="Membership QR ES0001 or 10-digit mobile"
+          placeholder="Membership QR ES0001 or 10-digit mobile"
           className="min-w-0 flex-1 rounded-xl border border-line bg-white p-3 text-sm text-ink"
         />
         <button
@@ -171,7 +185,14 @@ function PurchaseRecorder({
           }}
           className="rounded-xl border-2 border-brand bg-white px-4 py-3 text-sm font-semibold text-brand transition hover:bg-cream"
         >
-          Find customer
+          {lookupBusy ? (
+            <span className="inline-flex items-center gap-2">
+              <Spinner />
+              Looking up customer...
+            </span>
+          ) : (
+            "Find customer"
+          )}
         </button>
       </div>
 
@@ -229,7 +250,7 @@ function SelectedCustomer({
         Customer ID: {customer.customerCode || "Legacy customer"}
       </p>
       <p className="text-sm text-muted">
-        +91 {customer.phone} · {customer.visitCount || 0}/5 purchases completed
+        +91 {customer.phone} · {customer.visitCount || 0}/10 purchases completed
       </p>
 
       <PurchaseMeter count={customer.visitCount || 0} barClass="h-3" className="my-3" />
@@ -271,7 +292,14 @@ function SelectedCustomer({
         onClick={onRecordPurchase}
         className="mt-4 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
       >
-        {busy ? "Recording…" : "Confirm & record purchase"}
+        {busy ? (
+          <span className="inline-flex items-center gap-2">
+            <Spinner />
+            Recording purchase...
+          </span>
+        ) : (
+          "Confirm & record purchase"
+        )}
       </button>
     </div>
   );
@@ -370,9 +398,8 @@ function CustomerCard({
         </div>
 
         <span
-          className={`rounded-full px-3 py-1 text-xs font-bold ${
-            unlocked ? "bg-gold text-ink" : "bg-cream text-muted"
-          }`}
+          className={`rounded-full px-3 py-1 text-xs font-bold ${unlocked ? "bg-gold text-ink" : "bg-cream text-muted"
+            }`}
         >
           {unlocked ? "Reward unlocked" : `${customer.visitCount || 0}/5 purchases`}
         </span>
@@ -397,10 +424,10 @@ function CustomerCard({
             >
               Open WhatsApp reward
             </button>
-                        </div>
-                        <p className="text-xs text-muted">
-                          The customer opens a separate redemption QR. Confirm it in Reward redemption. Visit counts cannot be edited here.
-                        </p>
+          </div>
+          <p className="text-xs text-muted">
+            The customer opens a separate redemption QR. Confirm it in Reward redemption. Visit counts cannot be edited here.
+          </p>
         </div>
       )}
     </article>
@@ -418,12 +445,11 @@ function PurchaseMeter({
 }) {
   return (
     <div className={`${className} flex gap-2`}>
-      {[1, 2, 3, 4, 5].map((step) => (
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((step) => (
         <div
           key={step}
-          className={`${barClass} flex-1 rounded-full ${
-            step <= count ? "bg-gold" : "bg-line"
-          }`}
+          className={`${barClass} flex-1 rounded-full ${step <= count ? "bg-gold" : "bg-line"
+            }`}
         />
       ))}
     </div>

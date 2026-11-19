@@ -32,8 +32,9 @@ export default function AdminPage() {
   const [search, setSearch] = useState("");
   const [campaign, setCampaign] = useState<CampaignForm | null>(null);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
+  const [lookupBusy, setLookupBusy] = useState(false);
   const [rewardText, setRewardText] = useState(
-    "Congratulations! You have completed 5 qualifying purchases at EPIC Snacks. Enjoy your FREE reward!"
+    "Congratulations! You have completed 10 qualifying purchases at EPIC Snacks. Enjoy your FREE reward!"
   );
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -134,6 +135,7 @@ export default function AdminPage() {
     setNotice("");
 
     try {
+      setLookupBusy(true);
       const result = await staffFetch(`/api/loyalty/lookup?${params}`);
       setSelected({
         id: result.customer.customerCode,
@@ -147,6 +149,7 @@ export default function AdminPage() {
       setPurchaseVerified(false);
       setBillNumber("");
       setBillAmount("");
+      setLookupBusy(false);
     } catch (error) {
       console.error("Customer lookup error:", error);
       setScanError(error instanceof Error ? error.message : "Could not find this customer.");
@@ -390,6 +393,7 @@ export default function AdminPage() {
             </section>
           )}
           <AdminDashboard
+            lookupBusy={lookupBusy}
             customers={customers}
             scannerOn={scannerOn}
             scanError={scanError}

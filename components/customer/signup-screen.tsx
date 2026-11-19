@@ -3,6 +3,7 @@
 import type { FormEvent } from "react";
 import { firebaseConfigured } from "@/lib/firebase";
 import { ReturnVisitLogin } from "@/components/customer/phone-login";
+import { useRef } from "react";
 
 type SignupScreenProps = {
   name: string;
@@ -29,6 +30,7 @@ export function SignupScreen({
   onSubmit,
   onRecognized,
 }: SignupScreenProps) {
+
   return (
     <main className="min-h-screen bg-cream px-4 py-8 sm:px-6 sm:py-16">
       <div className="mx-auto grid w-full max-w-5xl items-stretch gap-4 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-6">

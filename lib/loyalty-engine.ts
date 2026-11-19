@@ -7,7 +7,7 @@ export const TOKEN_TTL_MS = 15 * 60 * 1000;
 export const DEFAULT_CAMPAIGN: Campaign = {
   id: CAMPAIGN_ID,
   name: "EPIC Snacks Rewards Club",
-  requiredVisits: 5,
+  requiredVisits: 10,
   minimumBillAmount: 200,
   rewardType: "free_item",
   rewardName: "Free Chicken Snack",

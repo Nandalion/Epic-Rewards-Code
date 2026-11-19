@@ -11,3 +11,4 @@ export type Customer = {
   rewardsSent?: number;
   registeredAt?: Timestamp;
 };
+

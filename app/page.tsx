@@ -54,7 +54,7 @@ export default function Home() {
       setProgress({
         customerCode: result.customerCode,
         visitCount: Math.max(0, Number(result.visitCount) || 0),
-        requiredVisits: Number(result.requiredVisits) || 5,
+        requiredVisits: Number(result.requiredVisits) || 10,
         minimumBillAmount: Number(result.minimumBillAmount) || 200,
         rewardStatus: result.rewardStatus || "locked",
         rewardName: result.rewardName,
@@ -95,6 +95,7 @@ export default function Home() {
       console.error("Could not restore loyalty card:", err);
     }
     setCardReady(true);
+    refreshProgress();
   }, []);
 
   function openCard(code: string, cardPhone: string, cardName: string, pin = "") {

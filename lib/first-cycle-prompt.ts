@@ -4,6 +4,6 @@ export type FirstCyclePrompt = "google-review" | "instagram-follow";
 export function firstCyclePrompt(cycleNumber: number, visitCount: number): FirstCyclePrompt | null {
   if (cycleNumber !== 1) return null;
   if (visitCount === 2) return "google-review";
-  if (visitCount === 4) return "instagram-follow";
+  if (visitCount === 5) return "instagram-follow";
   return null;
 }
