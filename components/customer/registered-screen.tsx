@@ -370,6 +370,7 @@ function LoyaltyCard({
             <VisitStar key={star} star={star} filled={star <= visitCount} />
           ))}
         </div>
+        
 
         <div className="mt-5 h-2 overflow-hidden rounded-full bg-line">
           <div
